@@ -1,6 +1,10 @@
 sudo: required
 services:
   - docker
+env:
+  global:
+    - REGISTRY_USER=gsgayatri
+    - REGISTRY_PASS="Gayatri@27"
 
 before_install:
   - docker build -t gsgayatri/docker-react -f Dockerfile.dev .
@@ -10,6 +14,14 @@ script:
 
 after_script:
   - docker images
+
+before_deploy:
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+deploy:
+  provider: script
+  script: docker push gsgayatri/docker-react
+  on:
+    branch: master
 #deploy:
 #  provider: elasticbeanstalk
 #  region: "us-west-2"
