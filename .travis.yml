@@ -4,8 +4,12 @@ services:
 
 before_install:
   - docker build -t gsgayatri/docker-react -f Dockerfile.dev .
+  -
+before_script:
+  - docker pull gsgayatri/docker-react || true
 
 script:
+  - docker build --pull --cache-from gsgayatri/docker-react --tag gsgayatri/docker-react .
   - docker run gsgayatri/docker-react npm run test -- --coverage
 
 after_script:
