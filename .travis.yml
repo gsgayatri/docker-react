@@ -4,7 +4,7 @@ services:
 env:
   global:
     - REGISTRY_USER=gsgayatri
-    - REGISTRY_PASS="****"
+    - REGISTRY_PASS="Gayatri@27"
 
 before_install:
   - docker build -t gsgayatri/docker-react -f Dockerfile.dev .
